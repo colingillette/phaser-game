@@ -113,6 +113,11 @@ function update ()
     if (cursors.up.isDown && player.body.touching.down) {
         player.setVelocityY(-330);
     }
+
+    if (gameOver) {
+        gameOverText = this.add.text(200, 260, 'Game Over!', { fontSize: '64px', fill: '#000', fontWeight: 'boldest' });
+        resetText = this.add.text(250, 320, 'Press F5 to Restart Game', { fontSize: '20px', fill: '#000' });
+    }
 }
 
 function collectStar(player, star)
