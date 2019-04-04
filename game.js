@@ -19,12 +19,15 @@ var config = {
 var bombs;
 var cusors;
 var gameOver = false;
+var jumpHeight = -330;
 var level = 1;
 var levelText;
 var platforms;
 var player;
 var score = 0;
 var scoreText;
+var speedNeg = -160;
+var speedPos = 160;
 var stars;
 
 var game = new Phaser.Game(config);
@@ -103,10 +106,10 @@ function create ()
 function update ()
 {
     if (cursors.left.isDown) {
-        player.setVelocityX(-160);
+        player.setVelocityX(speedNeg);
         player.anims.play('left', true);
     } else if (cursors.right.isDown) {
-        player.setVelocityX(160);
+        player.setVelocityX(speedPos);
         player.anims.play('right', true);
     } else {
         player.setVelocityX(0);
@@ -114,7 +117,7 @@ function update ()
     }
 
     if (cursors.up.isDown && player.body.touching.down) {
-        player.setVelocityY(-330);
+        player.setVelocityY(jumpHeight);
     }
 
     if (gameOver) {
@@ -133,9 +136,14 @@ function collectStar(player, star)
     if (stars.countActive(true) === 0) {
         level++;
         levelText.setText('Level: ' + level);
+        
         stars.children.iterate(function(child) {
             child.enableBody(true, child.x, 0, true, true);
         });
+
+        speedPos += 10;
+        speedNeg -= 10;
+        jumpHeight -= 5;
 
         for (var i = 1; i < level; i++) {
             var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
