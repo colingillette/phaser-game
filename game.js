@@ -19,6 +19,8 @@ var config = {
 var bombs;
 var cusors;
 var gameOver = false;
+var level = 1;
+var levelText;
 var platforms;
 var player;
 var score = 0;
@@ -90,7 +92,8 @@ function create ()
     this.physics.add.collider(stars, platforms);
     this.physics.add.overlap(player, stars, collectStar, null, this);
 
-    scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
+    scoreText = this.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
+    levelText = this.add.text(626, 16, 'Level: 1', { fontSize: '32px', fill: '#000' });
 
     bombs = this.physics.add.group();
     this.physics.add.collider(bombs, platforms);
@@ -126,18 +129,22 @@ function collectStar(player, star)
 
     score += 10;
     scoreText.setText('Score: ' + score);
-
+    
     if (stars.countActive(true) === 0) {
+        level++;
+        levelText.setText('Level: ' + level);
         stars.children.iterate(function(child) {
             child.enableBody(true, child.x, 0, true, true);
         });
 
-        var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
+        for (var i = 1; i < level; i++) {
+            var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
 
-        var bomb = bombs.create(x, 16, 'bomb');
-        bomb.setBounce(1);
-        bomb.setCollideWorldBounds(true);
-        bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
+            var bomb = bombs.create(x, 16, 'bomb');
+            bomb.setBounce(1);
+            bomb.setCollideWorldBounds(true);
+            bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
+        }
     }
 }
 
