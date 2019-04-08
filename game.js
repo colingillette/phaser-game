@@ -22,7 +22,7 @@ var config = {
 // Initialize game object and global varaibles
 
 var bombs;
-var cusors;
+var cursors;
 var gameOver = false;
 var jumpHeight = -330;
 var level = 1;
