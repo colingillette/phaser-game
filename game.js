@@ -24,6 +24,7 @@ var level = 1;
 var levelText;
 var platforms;
 var player;
+var purplePowerUpUsed;
 var purplePowerUps;
 var score = 0;
 var scoreText;
@@ -102,7 +103,7 @@ function create ()
 
     purplePowerUps = this.physics.add.group();
     this.physics.add.collider(purplePowerUps, platforms);
-    this.physics.add.collider(player, purplePowerUps, hitPowerUpPurple, null, this);
+    this.physics.add.overlap(player, purplePowerUps, hitPowerUpPurple, null, this);
 
     bombs = this.physics.add.group();
     this.physics.add.collider(bombs, platforms);
@@ -143,7 +144,9 @@ function collectStar(player, star)
         level++;
         levelText.setText('Level: ' + level);
 
-        power_up_chance();
+        if (!purplePowerUpUsed) {
+            power_up_chance();
+        }
         
         stars.children.iterate(function(child) {
             child.enableBody(true, child.x, 0, true, true);
@@ -173,12 +176,16 @@ function hitBomb(player, bomb)
 }
 
 function power_up_chance()
-{
-    var x = Phaser.Math.Between(10, 790);
-    var purplePowerUp = purplePowerUps.create(x, 16, 'purple');
-    purplePowerUp.setBounce(0.25);
-    purplePowerUp.setCollideWorldBounds(true);
-    purplePowerUp.setVelocity(Phaser.Math.Between(-20, 20), 15);
+{   
+    if (Math.random(1, 10) * 10 > 7) {
+        var x = Phaser.Math.Between(10, 790);
+        var purplePowerUp = purplePowerUps.create(x, 16, 'purple');
+        purplePowerUp.setBounce(0.25);
+        purplePowerUp.setCollideWorldBounds(true);
+        purplePowerUp.setVelocity(Phaser.Math.Between(-20, 20), 15);
+        
+        purplePowerUpUsed = true;
+    }
 }
 
 function hitPowerUpPurple(player, purplePowerUp)
@@ -187,5 +194,5 @@ function hitPowerUpPurple(player, purplePowerUp)
     speedNeg -= 30;
     jumpHeight -= 15;
 
-    purplePowerUps.remove(purplePowerUp);
+    purplePowerUp.destroy();
 }
