@@ -27,6 +27,7 @@ var player;
 var purplePowerUpUsed;
 var purplePowerUps;
 var score = 0;
+var scoreIncrement = 10;
 var scoreText;
 var speedNeg = -160;
 var speedPos = 160;
@@ -138,7 +139,7 @@ function collectStar(player, star)
 {
     star.disableBody(true, true);
 
-    score += 10;
+    score += scoreIncrement;
     scoreText.setText('Score: ' + score);
     
     if (stars.countActive(true) === 0) {
@@ -156,6 +157,7 @@ function collectStar(player, star)
         speedPos += 10;
         speedNeg -= 10;
         jumpHeight -= 5;
+        scoreIncrement += 5;
 
         for (var i = 1; i < level; i++) {
             var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
