@@ -218,7 +218,7 @@ function powerUpChance()
     if (Math.random(1, 10) * 10 > 7) {
         var x = Phaser.Math.Between(10, 790);
         var purplePowerUp = purplePowerUps.create(x, 16, 'purple');
-        purplePowerUp.setBounce(0.25);
+        purplePowerUp.setBounce(Phaser.Math.FloatBetween(0.4, 0.8));
         purplePowerUp.setCollideWorldBounds(true);
         purplePowerUp.setVelocity(Phaser.Math.Between(-20, 20), 15);      
         purplePowerUpUsed = true;
