@@ -87,6 +87,7 @@ function create()
     });
     stars.children.iterate(function(child) {
         child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
+        child.setCollideWorldBounds(true);
     });
 
     // Create player movement animations
