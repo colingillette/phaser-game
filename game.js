@@ -80,15 +80,10 @@ function create()
     // Create the Group Objects
     purplePowerUps = this.physics.add.group();
     bombs = this.physics.add.group();
-    stars = this.physics.add.group({
-        key: 'star',
-        repeat: 11,
-        setXY: { x: 12, y: 0, stepX: 70 }
-    });
-    stars.children.iterate(function(child) {
-        child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
-        child.setCollideWorldBounds(true);
-    });
+    stars = this.physics.add.group();
+
+    // Create the first star
+    createStar();
 
     // Create player movement animations
     this.anims.create({
@@ -175,17 +170,17 @@ function collectStar(player, star)
         if (!purplePowerUpUsed) {
             powerUpChance();
         }
-        
-        // Distribute a new round of stars
-        stars.children.iterate(function(child) {
-            child.enableBody(true, child.x, 0, true, true);
-        });
 
         // Slightly boost the player stats and score per star to compensate for increased difficulty
         speedPos += 10;
         speedNeg -= 10;
         jumpHeight -= 5;
         scoreIncrement += 5;
+
+        // Distribute a new round of stars. Dropping one star per level
+        for (var i = 0; i < level; i++) {
+            createStar();
+        }
 
         // Create bombs based on what level it is. Currently each level adds (level - 1) new bombs each time.
         for (var i = 1; i < level; i++) {
@@ -238,4 +233,14 @@ function hitPowerUpPurple(player, purplePowerUp)
 
     // Remove the powerup from the field
     purplePowerUp.destroy();
+}
+
+
+// createStar Helper Function: block of code that creates a single star
+
+function createStar() {
+    var x = Phaser.Math.Between(10, 790);
+    var star = stars.create(x, 16, 'star');
+    star.setBounce(Phaser.Math.FloatBetween(0.4, 0.8));
+    star.setCollideWorldBounds(true);
 }
