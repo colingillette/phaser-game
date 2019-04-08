@@ -189,7 +189,7 @@ function collectStar(player, star)
             bomb.setBounce(1);
             bomb.setCollideWorldBounds(true);
             bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
-        }   
+        }
     }
 }
 
