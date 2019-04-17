@@ -2,6 +2,7 @@
 
 var config = {
     type: Phaser.AUTO,
+    parent: 'gamespace',
     width: 800,
     height: 600,
     physics: {

@@ -9,3 +9,9 @@ header {
 #title {
     font-size: 5em;
 }
+
+#gamespace canvas {
+    align-content: center;
+    display: block;
+    margin: auto;
+}
