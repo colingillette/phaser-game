@@ -1,4 +1,11 @@
 h1 {
     font-family: 'Proza Libre', sans-serif;
-    font-size: 3em;
+}
+
+header {
+    text-align: center
+}
+
+#title {
+    font-size: 5em;
 }
