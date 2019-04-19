@@ -1,3 +1,24 @@
+article {
+    margin: auto;
+    text-align: center;
+    width: 80%;
+}
+
+article a {
+    color: darkblue;
+    text-decoration: none;
+}
+
+article a:hover {
+    color: darkcyan;
+}
+
+article p {
+    font-family: 'Gentium Basic', serif;
+    font-size: 1.25em;
+    text-align: justify;
+}
+
 #gamespace canvas {
     align-content: center;
     display: block;
@@ -8,12 +29,18 @@ h1 {
     font-family: 'Proza Libre', sans-serif;
 }
 
+h3 {
+    font-family: 'Proza Libre', sans-serif;
+    font-size: 2em;
+}
+
 header {
+    background-color: #aff1ff;
+    margin-top: 0;
     text-align: center
 }
 
 #title {
     font-size: 4em;
-    margin-bottom: 0.5em;
-    margin-top: 0.25em;
+    margin-top: 0;
 }
