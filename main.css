@@ -19,6 +19,10 @@ article p {
     text-align: justify;
 }
 
+#displayname {
+    margin-right: 5em;
+}
+
 #gamespace canvas {
     align-content: center;
     display: block;
@@ -41,6 +45,28 @@ header {
     padding-top: 1em;
     padding-bottom: 1em;
     text-align: center;
+}
+
+input {
+    font-family: 'Gentium Basic', serif;
+    font-size: 1.15em;
+}
+
+input[type=submit] {
+    background-color: #aff1ff;
+    border-color: #aff1ff;
+    border-radius: 10%;
+    font-size: 2em;
+    font-family: 'Proza Libre', sans-serif;
+}
+
+label {
+    font-family: 'Gentium Basic', serif;
+    font-size: 1.25em;
+}
+
+#score-submit-header {
+    margin-top: 1em;
 }
 
 #title {

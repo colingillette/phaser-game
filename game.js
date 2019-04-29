@@ -159,6 +159,7 @@ function collectStar(player, star)
     // Increment the score
     score += scoreIncrement;
     scoreText.setText('Score: ' + score);
+    document.getElementById('score').value = score;
     
     // This executes when this is the last star of the level
     if (stars.countActive(true) === 0) {
