@@ -19,10 +19,6 @@ article p {
     text-align: justify;
 }
 
-#displayname {
-    margin-right: 5em;
-}
-
 #gamespace canvas {
     align-content: center;
     display: block;
@@ -69,7 +65,22 @@ label {
     margin-top: 1em;
 }
 
+span {
+    font-size: 3.25em;
+}
+
+table {
+    margin-bottom: 2em;
+}
+
 #title {
     font-size: 4em;
     margin-top: 0;
+}
+
+th, td {
+    height: 5em;
+    font-size: 1.5em;
+    width: 15%;
+    border: black solid 1px;
 }

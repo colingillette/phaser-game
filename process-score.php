@@ -1,3 +1,5 @@
 <?php
-    echo "success";
+    
+
+    header('Location: index.html');
 ?>
