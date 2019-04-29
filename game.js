@@ -25,6 +25,7 @@ var config = {
 var bombs;
 var cursors;
 var gameOver = false;
+var invincible = false;
 var jumpHeight = -330;
 var level = 1;
 var levelText;
@@ -32,6 +33,8 @@ var platforms;
 var player;
 var purplePowerUpUsed;
 var purplePowerUps;
+var redPowerUpUsed;
+var redPowerUps;
 var score = 0;
 var scoreIncrement = 10;
 var scoreText;
@@ -51,6 +54,7 @@ function preload()
     this.load.image('star', 'assets/star.png');
     this.load.image('bomb', 'assets/bomb.png');
     this.load.image('purple', 'assets/PowerUp1.png');
+    this.load.image('red', 'assets/PowerUp2.png');
     this.load.spritesheet('dude', 'assets/dude.png', { frameWidth: 32, frameHeight: 48 });
 }
 
@@ -80,6 +84,7 @@ function create()
 
     // Create the Group Objects
     purplePowerUps = this.physics.add.group();
+    redPowerUps = this.physics.add.group();
     bombs = this.physics.add.group();
     stars = this.physics.add.group();
 
@@ -111,6 +116,8 @@ function create()
     this.physics.add.overlap(player, stars, collectStar, null, this);
     this.physics.add.collider(purplePowerUps, platforms);
     this.physics.add.overlap(player, purplePowerUps, hitPowerUpPurple, null, this);
+    this.physics.add.collider(redPowerUps, platforms);
+    this.physics.add.overlap(player, redPowerUps, hitPowerUpRed, null, this);
     this.physics.add.collider(bombs, platforms);
     this.physics.add.collider(player, bombs, hitBomb, null, this);
 
@@ -170,7 +177,11 @@ function collectStar(player, star)
         
         // Handle powerup drops
         if (!purplePowerUpUsed) {
-            powerUpChance();
+            powerUpChance("purple");
+        }
+
+        if (!redPowerUpUsed) {
+            powerUpChance("red");
         }
 
         // Slightly boost the player stats and score per star to compensate for increased difficulty
@@ -179,18 +190,31 @@ function collectStar(player, star)
         jumpHeight -= 5;
         scoreIncrement += 5;
 
-        // Distribute a new round of stars. Dropping one star per level
-        for (var i = 0; i < level; i++) {
-            createStar();
+        // Distribute a new round of stars. Dropping one star per level through level 10. Stars will max at 10 per level.
+        if (level <= 10) {
+            for (var i = 0; i < level; i++) {
+                createStar();
+            }
+        }
+        else {
+            for (var i = 0; i < 10; i++) {
+                createStar();
+            }
         }
 
-        // Create bombs based on what level it is. Currently adding a bomb every other level.
-        if (level % 2 == 0) {
+        // Create bombs based on what level it is. Currently adding a bomb every other level through level 10.
+        if (level % 2 == 0 && level <= 10) {
             var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
             var bomb = bombs.create(x, 16, 'bomb');
             bomb.setBounce(1);
             bomb.setCollideWorldBounds(true);
             bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
+        }
+
+        // Reset the power up distribution chance every 8 levels
+        if (level % 8 == 0) {
+            purplePowerUpUsed = false;
+            redPowerUpUsed = false;
         }
     }
 }
@@ -200,31 +224,49 @@ function collectStar(player, star)
 
 function hitBomb(player, bomb)
 {
-    // Stop the game state, set the player to basic pose, make its tint red, and set gameOver to true for update function
-    this.physics.pause();
-    player.setTint(0xff0000);
-    player.anims.play('turn');
-    gameOver = true;
+    if (!invincible)
+    {
+        // Stop the game state, set the player to basic pose, make its tint red, and set gameOver to true for update function
+        this.physics.pause();
+        player.setTint(0xff0000);
+        player.anims.play('turn');
+        gameOver = true;
+    }
 }
 
 
 // powerUpChance Helper Function: Called every new level, handles distribution of powerups
 
-function powerUpChance()
+function powerUpChance(powerUp)
 {   
-    // Handles the purple powerup drop chance and distribution
-    if (Math.random(1, 10) * 10 > 7) {
-        var x = Phaser.Math.Between(10, 790);
-        var purplePowerUp = purplePowerUps.create(x, 16, 'purple');
-        purplePowerUp.setBounce(Phaser.Math.FloatBetween(0.4, 0.8));
-        purplePowerUp.setCollideWorldBounds(true);
-        purplePowerUp.setVelocity(Phaser.Math.Between(-20, 20), 15);      
-        purplePowerUpUsed = true;
+    if (powerUp === "purple")
+    {
+        // Handles the purple powerup drop chance and distribution
+        if (Math.random(1, 10) * 10 > 4) {
+            var x = Phaser.Math.Between(10, 790);
+            var purplePowerUp = purplePowerUps.create(x, 16, 'purple');
+            purplePowerUp.setBounce(Phaser.Math.FloatBetween(0.4, 0.8));
+            purplePowerUp.setCollideWorldBounds(true);
+            purplePowerUp.setVelocity(Phaser.Math.Between(-20, 20), 15);      
+            purplePowerUpUsed = true;
+        }
+    }
+    else if (powerUp === "red")
+    {
+        // Handles the red powerup drop chance and distribution
+        if (Math.random(1, 10) * 10 > 6) {
+            var x = Phaser.Math.Between(10, 790);
+            var redPowerUp = redPowerUps.create(x, 16, 'red');
+            redPowerUp.setBounce(Phaser.Math.FloatBetween(0.4, 0.8));
+            redPowerUp.setCollideWorldBounds(true);
+            redPowerUp.setVelocity(Phaser.Math.Between(-20, 20), 15);      
+            redPowerUpUsed = true;
+        }
     }
 }
 
 
-// hitPowerUpPurple Helper Function: Called by powerUpChance to distribute a purple power up
+// hitPowerUpPurple Helper Function: Called by physics event between player and purple
 
 function hitPowerUpPurple(player, purplePowerUp)
 {
@@ -235,6 +277,29 @@ function hitPowerUpPurple(player, purplePowerUp)
 
     // Remove the powerup from the field
     purplePowerUp.destroy();
+}
+
+// hitPowerUpRed Helper Function: Called by physics event between player and red
+
+function hitPowerUpRed(player, redPowerUp)
+{
+    // Set Invincibility to true for 15 seconds
+    invincible = true;
+    player.setTint(0x0000ff);
+    setTimeout(nulifyInvincibility, 10000);
+
+    // Remove the powerup from the field
+    redPowerUp.destroy();
+}
+
+
+// nulifyInvincibility Helper Function: Called after 15 seconds of invincibility
+
+function nulifyInvincibility()
+{
+    // Set Invincibility to false
+    invincible = false;
+    player.setTint(0xffffff);
 }
 
 

@@ -10,4 +10,3 @@ This game is an expansion of the tutorial supplied by the Phaser.js creator.
 ### Specific Tasks
 
 * Implement Red Power Up functionality (temporary invincibility?)
-* Create featherfall and lead-weight power-ups
