@@ -5,7 +5,7 @@ article {
 }
 
 article a {
-    color: rgb(8, 6, 102);
+    color: #2306c5;
     text-decoration: none;
 }
 
@@ -48,12 +48,17 @@ input {
     font-size: 1.15em;
 }
 
-input[type=submit] {
+#submit {
     background-color: #aff1ff;
     border-color: #aff1ff;
     border-radius: 10%;
     font-size: 2em;
     font-family: 'Proza Libre', sans-serif;
+}
+
+#submit:hover {
+    background-color: darkcyan;
+    color: white;
 }
 
 label {
