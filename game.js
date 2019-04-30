@@ -22,9 +22,11 @@ var config = {
 
 // Initialize game object and global varaibles
 
+var anvils;
 var bombs;
 var cursors;
 var gameOver = false;
+var feathers;
 var invincible = false;
 var jumpHeight = -330;
 var level = 1;
@@ -55,11 +57,13 @@ function preload()
     this.load.image('bomb', 'assets/bomb.png');
     this.load.image('purple', 'assets/PowerUp1.png');
     this.load.image('red', 'assets/PowerUp2.png');
+    this.load.image('feather', 'assets/feather.png');
+    this.load.image('anvil', 'assets/anvil.png');
     this.load.spritesheet('dude', 'assets/dude.png', { frameWidth: 32, frameHeight: 48 });
 }
 
 
-// Create PHaser function: Used to initialize all important game objects and do any processes that need to happen before start
+// Create Phaser function: Used to initialize all important game objects and do any processes that need to happen before start
 
 function create()
 {
@@ -85,6 +89,8 @@ function create()
     // Create the Group Objects
     purplePowerUps = this.physics.add.group();
     redPowerUps = this.physics.add.group();
+    feathers = this.physics.add.group();
+    anvils = this.physics.add.group();
     bombs = this.physics.add.group();
     stars = this.physics.add.group();
 
@@ -118,6 +124,10 @@ function create()
     this.physics.add.overlap(player, purplePowerUps, hitPowerUpPurple, null, this);
     this.physics.add.collider(redPowerUps, platforms);
     this.physics.add.overlap(player, redPowerUps, hitPowerUpRed, null, this);
+    this.physics.add.collider(feathers, platforms);
+    this.physics.add.overlap(player, feathers, hitFeather, null, this);
+    this.physics.add.collider(anvils, platforms);
+    this.physics.add.overlap(player, anvils, hitAnvil, null, this);
     this.physics.add.collider(bombs, platforms);
     this.physics.add.collider(player, bombs, hitBomb, null, this);
 
@@ -148,10 +158,11 @@ function update ()
         player.setVelocityY(jumpHeight);
     }
 
-    // If game over is detected we will give restart instructions
+    // If game over is detected we will give restart instructions and kill the game
     if (gameOver) {
         gameOverText = this.add.text(200, 260, 'Game Over!', { fontSize: '64px', fill: '#000', fontWeight: 'boldest' });
         resetText = this.add.text(250, 320, 'Press F5 to Restart Game', { fontSize: '20px', fill: '#000' });
+        game.destroy();
     }
 }
 
@@ -183,6 +194,8 @@ function collectStar(player, star)
         if (!redPowerUpUsed) {
             powerUpChance("red");
         }
+
+        powerUpChance("gravity");
 
         // Slightly boost the player stats and score per star to compensate for increased difficulty
         speedPos += 10;
@@ -263,6 +276,26 @@ function powerUpChance(powerUp)
             redPowerUpUsed = true;
         }
     }
+    else if (powerUp === "gravity")
+    {
+        // Handles the feather and anvil distribution
+        if (Math.random(1, 10) * 10 > 8) {
+            var x = Phaser.Math.Between(10, 790);
+            // Randomly decide between an anvil and a feather
+            if (Math.random(1, 10) * 10 > 5) {
+                var feather = feathers.create(x, 16, 'feather');
+                feather.setBounce(Phaser.Math.FloatBetween(0.6, 0.9));
+                feather.setCollideWorldBounds(true);
+                feather.setVelocity(Phaser.Math.Between(-20, 20), 10);
+            }
+            else {
+                var anvil = anvils.create(x, 16, 'anvil');
+                anvil.setBounce(Phaser.Math.FloatBetween(0.1, 0.2));
+                anvil.setCollideWorldBounds(true);
+                anvil.setVelocity(Phaser.Math.Between(-20, 20), 30);
+            }
+        }
+    }
 }
 
 
@@ -305,9 +338,36 @@ function nulifyInvincibility()
 
 // createStar Helper Function: block of code that creates a single star
 
-function createStar() {
+function createStar() 
+{
     var x = Phaser.Math.Between(10, 790);
     var star = stars.create(x, 16, 'star');
     star.setBounce(Phaser.Math.FloatBetween(0.4, 0.8));
     star.setCollideWorldBounds(true);
+}
+
+
+// hitFeather Helper Function: Executes when the player hits a feather. Significantly raises jump height temporarily.
+
+function hitFeather(player, feather)
+{
+    var currentHeight = jumpHeight;
+    jumpHeight = -550;
+    setTimeout(function() {
+        jumpHeight = currentHeight;
+    }, 4000);
+    feather.destroy();
+}
+
+
+// hitAnvil Helper Function: Executes when the player hits a feather. Significantly lowers jump height temporarily.
+
+function hitAnvil(player, anvil)
+{
+    var currentHeight = jumpHeight;
+    jumpHeight = -150;
+    setTimeout(function() {
+        jumpHeight = currentHeight
+    }, 4000);
+    anvil.destroy();
 }
