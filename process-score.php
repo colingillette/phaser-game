@@ -2,6 +2,8 @@
   if ($_SERVER["REQUEST_METHOD"] == "POST")
   {
     $display = test_input($_POST["displayname"]);
+    $score = test_input($_POST["score"]);
+    $level = test_input($_POST["level"]);
   }
 
   // Create database connection
@@ -25,9 +27,14 @@
     exit();
   }
 
+  // Enforce logic on display name before saving it to the database
   $display = enforce_input_logic($display);
 
-  // Sends user back to game page
+  // Store data and close connection
+  store_data($conn, $display, $score, $level);
+  mysqli_close($conn);
+
+  // Redirect user back to game
   header('Location: index.html');
 
   // Sanitizes input
@@ -60,5 +67,18 @@
     }
 
     return $data;
+  }
+
+  // Store data in the database
+  function store_data($conn, $display, $score, $level)
+  {
+    $sql = mysqli_prepare($conn, "INSERT INTO platformer.scores (display_name, score, level, datetime) VALUES (?, ?, ?, ?);");
+    mysqli_stmt_bind_param($sql, 'siis', $displayName, $scoreValue, $levelValue, $datetime);
+    $displayName = $display;
+    $scoreValue = (int)$score;
+    $levelValue = (int)$level;
+    $datetime = date('Y-m-d H:i:s');
+    mysqli_stmt_execute($sql);
+    mysqli_stmt_close($sql);
   }
 ?>

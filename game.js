@@ -185,6 +185,7 @@ function collectStar(player, star)
         // Increment the level and show the player
         level++;
         levelText.setText('Level: ' + level);
+        document.getElementById('level').value = level;
         
         // Handle powerup drops
         if (!purplePowerUpUsed) {
