@@ -23,6 +23,7 @@ var config = {
 // Initialize game object and global varaibles
 
 var anvils;
+var bombCount = 0;
 var bombs;
 var cursors;
 var dropOcurred;
@@ -41,6 +42,9 @@ var redPowerUps;
 var score = 0;
 var scoreIncrement = 10;
 var scoreText;
+var softCapJump = -600;
+var softCapNeg = -300;
+var softCapPos = 300;
 var speedNeg = -160;
 var speedPos = 160;
 var stars;
@@ -207,9 +211,9 @@ function collectStar(player, star)
         }
 
         // Slightly boost the player stats and score per star to compensate for increased difficulty
-        speedPos += 10;
-        speedNeg -= 10;
-        jumpHeight -= 5;
+        if (speedPos < softCapPos) { speedPos += 10; }
+        if (speedNeg < softCapNeg) { speedNeg -= 10; }
+        if (jumpHeight < softCapJump) { jumpHeight -= 5; }
         scoreIncrement += 5;
 
         // Distribute a new round of stars. Dropping one star per level through level 10. Stars will max at 10 per level.
@@ -225,12 +229,13 @@ function collectStar(player, star)
         }
 
         // Create bombs based on what level it is. Currently adding a bomb every 4 levels through 16, plus one at level 2.
-       if ((level % 4 == 0 && level <= 16) || level == 2) {
+       if (level % 2 == 0 && bombCount < 5) {
             var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
             var bomb = bombs.create(x, 16, 'bomb');
             bomb.setBounce(1);
             bomb.setCollideWorldBounds(true);
             bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
+            bombCount++;
         }
 
         // Reset the power up distribution chance every 5 levels
@@ -253,6 +258,15 @@ function hitBomb(player, bomb)
         player.setTint(0xff0000);
         player.anims.play('turn');
         gameOver = true;
+    }
+    else
+    {
+        // Destroy the bomb if the player is invincible
+        score += 50;
+        scoreText.setText('Score: ' + score);
+        document.getElementById('score').value = score;
+        bomb.destroy();
+        bombCount--;
     }
 }
 
@@ -325,10 +339,10 @@ function hitPowerUpPurple(player, purplePowerUp)
 
 function hitPowerUpRed(player, redPowerUp)
 {
-    // Set Invincibility to true for 15 seconds
+    // Set Invincibility to true for 6 seconds
     invincible = true;
     player.setTint(0x0000ff);
-    setTimeout(nulifyInvincibility, 10000);
+    setTimeout(nulifyInvincibility, 6000);
 
     // Remove the powerup from the field
     redPowerUp.destroy();
