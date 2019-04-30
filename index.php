@@ -90,26 +90,52 @@
                 <th class="score-table">Date & Time</th>
             </tr>
 
-            <?php display_scores(); ?>
+            <?php 
+                 // Create database connection
+                $servername = "localhost";
+                $sqlusername = "cag35";
+                $sqlpassword = "cag35";
+                $dbname = "platformer";
+                $conn = new mysqli($servername, $sqlusername, $sqlpassword, $dbname);
+
+                // Check for any connection errors
+                if (mysqli_connect_errno())
+                {
+                exit();
+                }
+
+                // Run the query and display data
+                $sql = "SELECT display_name, score, level, datetime FROM platformer.scores ORDER BY score DESC LIMIT 10;";
+                $result = mysqli_query($conn, $sql);
+                if (mysqli_num_rows($result))
+                {
+                    $counter = 1;
+
+                    while ($row = mysqli_fetch_assoc($result))
+                    {
+                        $name = $row["display_name"];
+                        $score = $row["score"];
+                        $level = $row["level"];
+                        $date = date("m-d-Y H:i", strtotime($row["datetime"]));
+                        
+                        echo "<tr>";
+                            echo "<td class='score-table'>$counter</td>";
+                            echo "<td class='score-table'>$name</td>";
+                            echo "<td class='score-table'>$score</td>";
+                            echo "<td class='score-table'>$level</td>";
+                            echo "<td class='score-table'>$date</td>";
+                        echo "</tr>";
+
+                        $counter++;
+                    }
+                }
+                else
+                {
+                    exit();
+                }
+            ?>
         </table>
     </article>
 
 </body>
 </html>
-
-<?php
-    // Create database connection
-    $servername = "localhost";
-    $sqlusername = "cag35";
-    $sqlpassword = "cag35";
-    $dbname = "platformer";
-    $conn = new mysqli($servername, $sqlusername, $sqlpassword, $dbname);
-
-    // Check for any connection errors
-    if (mysqli_connect_errno())
-    {
-      exit();
-    }
-
-    
-?>

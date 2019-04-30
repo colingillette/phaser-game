@@ -26,7 +26,7 @@
         </p>
 
         <p>
-            You can click <a href="index.html">here</a> to return to the game and try again.
+            You can click <a href="index.php">here</a> to return to the game and try again.
         </p>
     </article>
 </body>

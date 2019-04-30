@@ -16,7 +16,7 @@
   store_data($display, $score, $level);
 
   // Redirect user back to game
-  header('Location: index.html');
+  header('Location: index.php');
 
   // Sanitizes input
   function test_input($data)
