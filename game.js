@@ -225,8 +225,8 @@ function collectStar(player, star)
             bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
         }
 
-        // Reset the power up distribution chance every 8 levels
-        if (level % 8 == 0) {
+        // Reset the power up distribution chance every 5 levels
+        if (level % 5 == 0) {
             purplePowerUpUsed = false;
             redPowerUpUsed = false;
         }
@@ -280,7 +280,7 @@ function powerUpChance(powerUp)
     else if (powerUp === "gravity")
     {
         // Handles the feather and anvil distribution
-        if (Math.random(1, 10) * 10 > 8) {
+        if (Math.random(1, 10) * 10 > 7) {
             var x = Phaser.Math.Between(10, 790);
             // Randomly decide between an anvil and a feather
             if (Math.random(1, 10) * 10 > 5) {
