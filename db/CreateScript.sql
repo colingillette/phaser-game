@@ -6,7 +6,7 @@ CREATE DATABASE `platformer` /*!40100 DEFAULT CHARACTER SET latin1 */;
 
 CREATE TABLE `platformer`.`scores` (
   `score_id` int(11) NOT NULL AUTO_INCREMENT,
-  `display_name` varchar(15) NOT NULL,
+  `display_name` varchar(30) NOT NULL,
   `score` int(11) NOT NULL,
   `level` int(11) NOT NULL,
   `datetime` datetime DEFAULT NULL,
