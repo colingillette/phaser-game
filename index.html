@@ -64,15 +64,16 @@
     <section id="gamespace">
         <script src="game.js"></script>
     </section>
-
+    
     <article>
         <h3 id="score-submit-header">Submit your score!</h3>
-        <form action="process-score.php" method="POST">
+        <form name="form" action="process-score.php" method="POST">
             <br>
             <label for="displayname">Display Name:&nbsp;</label><input type="text" name="displayname" id="displayname" value="Guest"><br>
             <label for="score">Score:&nbsp;</label><input type="text" name="score" id="score" value="0" readonly><br><br>
-            <input type="submit" name="submit" value="Submit">
+            <input type="submit" name="submit" value="Submit" onclick="return validateDisplay();">
         </form>
     </article>
+    
 </body>
 </html>
