@@ -9,13 +9,6 @@
     $level = test_input($_POST["level"]);
   }
 
-  // Create database connection
-  $servername = "localhost";
-  $sqlusername = "cag35";
-  $sqlpassword = "cag35";
-  $dbname = "platformer";
-  $conn = new mysqli($servername, $sqlusername, $sqlpassword, $dbname);
-
   // Check for any connection errors
   if (mysqli_connect_errno())
   {
@@ -23,19 +16,12 @@
     header('Location: failure.php');
     exit();
   }
-  if (!mysqli_ping($conn))
-  {
-    $_SESSION["error"] = "The connection to the server is not active";
-    header('Location: failuer.php');
-    exit();
-  }
 
   // Enforce logic on display name before saving it to the database
   $display = enforce_input_logic($display);
 
   // Store data and close connection
-  store_data($conn, $display, $score, $level);
-  mysqli_close($conn);
+  store_data($display, $score, $level);
 
   // Redirect user back to game
   header('Location: index.html');
@@ -73,15 +59,25 @@
   }
 
   // Store data in the database
-  function store_data($conn, $display, $score, $level)
+  function store_data($display, $score, $level)
   {
+    // Create database connection
+    $servername = "localhost";
+    $sqlusername = "cag35";
+    $sqlpassword = "cag35";
+    $dbname = "platformer";
+    $conn = new mysqli($servername, $sqlusername, $sqlpassword, $dbname);
+    
     $sql = mysqli_prepare($conn, "INSERT INTO platformer.scores (display_name, score, level, datetime) VALUES (?, ?, ?, ?);");
     mysqli_stmt_bind_param($sql, 'siis', $displayName, $scoreValue, $levelValue, $datetime);
     $displayName = $display;
     $scoreValue = (int)$score;
     $levelValue = (int)$level;
     $datetime = date('Y-m-d H:i:s');
+
     mysqli_stmt_execute($sql);
     mysqli_stmt_close($sql);
+
+    mysqli_close($conn);
   }
 ?>
