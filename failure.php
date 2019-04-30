@@ -19,7 +19,7 @@
         <h1 id="title">We're Sorry!</h1>
     </header>
     <article>
-        <h3>There seems to have been an issue when storing your score.</h3>
+        <h2>There seems to have been an issue when storing your score.</h2>
 
         <p>
             It looks like we had the following error: <?php echo $_SESSION["error"]; ?>

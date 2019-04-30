@@ -18,7 +18,7 @@
     </header>
 
     <article>
-        <h3>Welcome to My Phaser.js Platform Game</h3>
+        <h2 class="article-header">Welcome to My Phaser.js Platform Game</h2>
         <p>
             This is a simple, random-generation driven game that implements a neat library called 
             <a href="https://phaser.io/">Phaser.js</a>. This is an open-source JavaScript library
@@ -32,7 +32,7 @@
     </article>
 
     <article>
-        <h3>How do I Play?</h3>
+        <h2 class="article-header">How do I Play?</h2>
         <p>
             The object of the game is very simple: collect the stars and avoid the bombs. Each level ends when all the
             stars are collected. A game will end if your character is hit by a bomb. As the levels progress, the gameplay 
@@ -57,16 +57,18 @@
         </table>
 
         <p>
-            
+            Once you're done playing the game, hit the <b>Submit</b> button below to save your score. 
+            Don't forget to look and see how you compare to other players!
         </p>
     </article>
 
     <section id="gamespace">
+        <h2 class="article-header">Play the Game!</h2>
         <script src="game.js"></script>
     </section>
     
     <article>
-        <h3 id="score-submit-header">Submit your score!</h3>
+        <h2 class="article-header" id="score-submit-header">Submit your score!</h2>
         <form name="form" action="process-score.php" method="POST">
             <br>
             <label for="displayname">Display Name:&nbsp;</label><input type="text" name="displayname" id="displayname" value="Guest"><br>
@@ -76,5 +78,9 @@
         </form>
     </article>
     
+    <article>
+        <h2 class="article-header">Top 10 Scores</h2>
+    </article>
+
 </body>
 </html>

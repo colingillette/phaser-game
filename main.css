@@ -4,6 +4,10 @@ article {
     width: 70%;
 }
 
+.article-header {
+    font-size: 2.5em;
+}
+
 article a {
     color: #2306c5;
     text-decoration: none;
@@ -29,9 +33,8 @@ h1 {
     font-family: 'Proza Libre', sans-serif;
 }
 
-h3 {
+h2 {
     font-family: 'Proza Libre', sans-serif;
-    font-size: 2em;
 }
 
 header {
@@ -54,6 +57,7 @@ input {
     border-radius: 10%;
     font-size: 2em;
     font-family: 'Proza Libre', sans-serif;
+    margin-bottom: 1.25em;
 }
 
 #submit:hover {
@@ -70,12 +74,16 @@ label {
     margin-top: 1em;
 }
 
+section {
+    text-align: center;
+}
+
 span {
     font-size: 3.25em;
 }
 
 table {
-    margin-bottom: 2em;
+    margin-bottom: 1.2em;
 }
 
 #title {
