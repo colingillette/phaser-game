@@ -9,14 +9,6 @@
     $level = test_input($_POST["level"]);
   }
 
-  // Check for any connection errors
-  if (mysqli_connect_errno())
-  {
-    $_SESSION["error"] = "Failed to connect to database";
-    header('Location: failure.php');
-    exit();
-  }
-
   // Enforce logic on display name before saving it to the database
   $display = enforce_input_logic($display);
 
@@ -68,6 +60,14 @@
     $dbname = "platformer";
     $conn = new mysqli($servername, $sqlusername, $sqlpassword, $dbname);
     
+    // Check for any connection errors
+    if (mysqli_connect_errno())
+    {
+      $_SESSION["error"] = "Failed to connect to database";
+      header('Location: failure.php');
+      exit();
+    }
+
     $sql = mysqli_prepare($conn, "INSERT INTO platformer.scores (display_name, score, level, datetime) VALUES (?, ?, ?, ?);");
     mysqli_stmt_bind_param($sql, 'siis', $displayName, $scoreValue, $levelValue, $datetime);
     $displayName = $display;

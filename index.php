@@ -45,14 +45,14 @@
 
         <table>
             <tr>
-                <th><span class="glyphicon glyphicon-arrow-up"></span></th>
-                <th><span class="glyphicon glyphicon-arrow-left"></span></th>
-                <th><span class="glyphicon glyphicon-arrow-right"></span></th>
+                <th class="explanation-table"><span class="glyphicon glyphicon-arrow-up"></span></th>
+                <th class="explanation-table"><span class="glyphicon glyphicon-arrow-left"></span></th>
+                <th class="explanation-table"><span class="glyphicon glyphicon-arrow-right"></span></th>
             </tr>
             <tr>
-                <td>Allows the character to jump</td>
-                <td>Moves the character left</td>
-                <td>Moves the character right</td>
+                <td class="explanation-table">Allows the character to jump</td>
+                <td class="explanation-table">Moves the character left</td>
+                <td class="explanation-table">Moves the character right</td>
             </tr>
         </table>
 
@@ -80,7 +80,36 @@
     
     <article>
         <h2 class="article-header">Top 10 Scores</h2>
+
+        <table>
+            <tr>
+                <th class="score-table">Position</th>
+                <th class="score-table">Display Name</th>
+                <th class="score-table">Score</th>
+                <th class="score-table">Level</th>
+                <th class="score-table">Date & Time</th>
+            </tr>
+
+            <?php display_scores(); ?>
+        </table>
     </article>
 
 </body>
 </html>
+
+<?php
+    // Create database connection
+    $servername = "localhost";
+    $sqlusername = "cag35";
+    $sqlpassword = "cag35";
+    $dbname = "platformer";
+    $conn = new mysqli($servername, $sqlusername, $sqlpassword, $dbname);
+
+    // Check for any connection errors
+    if (mysqli_connect_errno())
+    {
+      exit();
+    }
+
+    
+?>
