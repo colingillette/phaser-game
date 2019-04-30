@@ -25,6 +25,7 @@ var config = {
 var anvils;
 var bombs;
 var cursors;
+var dropOcurred;
 var gameOver = false;
 var feathers;
 var invincible = false;
@@ -188,15 +189,22 @@ function collectStar(player, star)
         document.getElementById('level').value = level;
         
         // Handle powerup drops
-        if (!purplePowerUpUsed) {
+        dropOcurred = false;
+
+        if (!purplePowerUpUsed && dropOcurred === false) {
             powerUpChance("purple");
+            dropOcurred = true;
         }
 
-        if (!redPowerUpUsed) {
+        if (!redPowerUpUsed && dropOcurred === false) {
             powerUpChance("red");
+            dropOcurred = true;
         }
 
-        powerUpChance("gravity");
+        if (dropOcurred === false) {
+            powerUpChance("gravity");
+            dropOcurred = true;
+        }
 
         // Slightly boost the player stats and score per star to compensate for increased difficulty
         speedPos += 10;
