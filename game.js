@@ -216,8 +216,8 @@ function collectStar(player, star)
             }
         }
 
-        // Create bombs based on what level it is. Currently adding a bomb every other level through level 10.
-        if (level % 2 == 0 && level <= 10) {
+        // Create bombs based on what level it is. Currently adding a bomb every 4 levels through 16, plus one at level 2.
+       if ((level % 4 == 0 && level <= 16) || level == 2) {
             var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
             var bomb = bombs.create(x, 16, 'bomb');
             bomb.setBounce(1);
