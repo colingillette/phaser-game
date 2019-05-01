@@ -50,9 +50,9 @@
                 <th class="explanation-table"><span class="glyphicon glyphicon-arrow-right"></span></th>
             </tr>
             <tr>
-                <td class="explanation-table">Allows the character to jump</td>
-                <td class="explanation-table">Moves the character left</td>
-                <td class="explanation-table">Moves the character right</td>
+                <td class="explanation-table">Allows the character to jump.</td>
+                <td class="explanation-table">Moves the character left.</td>
+                <td class="explanation-table">Moves the character right.</td>
             </tr>
         </table>
 

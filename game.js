@@ -166,7 +166,7 @@ function update ()
     // If game over is detected we will give restart instructions and kill the game
     if (gameOver) {
         gameOverText = this.add.text(200, 260, 'Game Over!', { fontSize: '64px', fill: '#000', fontWeight: 'boldest' });
-        resetText = this.add.text(250, 320, 'Press F5 to Restart Game', { fontSize: '20px', fill: '#000' });
+        resetText = this.add.text(250, 320, 'Submit Your Score Below!', { fontSize: '20px', fill: '#000' });
         game.destroy();
     }
 }
