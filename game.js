@@ -302,7 +302,7 @@ function powerUpChance(powerUp)
     else if (powerUp === "gravity")
     {
         // Handles the feather and anvil distribution
-        if (Math.random(1, 10) * 10 > 7) {
+        if (Math.random(1, 10) * 10 > 5) {
             var x = Phaser.Math.Between(10, 790);
             // Randomly decide between an anvil and a feather
             if (Math.random(1, 10) * 10 > 5) {
