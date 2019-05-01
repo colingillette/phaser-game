@@ -57,7 +57,6 @@ header {
 
 input {
     font-family: 'Gentium Basic', serif;
-    font-size: 1.15em;
 }
 
 #submit {
@@ -76,11 +75,7 @@ input {
 
 label {
     font-family: 'Gentium Basic', serif;
-    font-size: 1.25em;
-}
-
-#score-submit-header {
-    margin-top: 1em;
+    font-size: 1.5em;
 }
 
 section {

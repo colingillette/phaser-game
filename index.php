@@ -68,13 +68,14 @@
     </section>
     
     <article>
-        <h2 class="article-header" id="score-submit-header">Submit your score!</h2>
+        <h2 class="article-header">Submit your score!</h2>
         <form name="form" action="process-score.php" method="POST">
             <br>
             <label for="displayname">Display Name:&nbsp;</label><input type="text" name="displayname" id="displayname" value="Guest"><br>
-            <label for="score">Score:&nbsp;</label><input type="text" name="score" id="score" value="0" readonly><br>
-            <label for="level">Level:&nbsp;</label><input type="text" name="level" id="level" value="1" readonly><br><br>
+            <label for="score">*Score:&nbsp;</label><input type="text" name="score" id="score" value="0" readonly><br>
+            <label for="level">*Level:&nbsp;</label><input type="text" name="level" id="level" value="1" readonly><br><br>
             <input type="submit" id="submit" name="submit" value="Submit" onclick="return validateDisplay();">
+            <p><b>*</b> We will handle changing the <b>score</b> and <b>level</b> for you. Feel free to change your display name though!</p>
         </form>
     </article>
     
