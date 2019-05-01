@@ -43,7 +43,7 @@
             The game only requires directional arrows to play!
         </p>
 
-        <table>
+        <table id="score-table">
             <tr>
                 <th class="explanation-table"><span class="glyphicon glyphicon-arrow-up"></span></th>
                 <th class="explanation-table"><span class="glyphicon glyphicon-arrow-left"></span></th>
