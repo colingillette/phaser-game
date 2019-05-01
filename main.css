@@ -6,6 +6,8 @@ article {
 
 .article-header {
     font-size: 2.5em;
+    margin-bottom: 1em;
+    margin-top: 1em;
 }
 
 article a {
@@ -19,7 +21,7 @@ article a:hover {
 
 article p {
     font-family: 'Gentium Basic', serif;
-    font-size: 1.25em;
+    font-size: 1.4em;
     text-align: justify;
 }
 
