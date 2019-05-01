@@ -197,17 +197,14 @@ function collectStar(player, star)
 
         if (!purplePowerUpUsed && dropOcurred === false) {
             powerUpChance("purple");
-            dropOcurred = true;
         }
 
         if (!redPowerUpUsed && dropOcurred === false) {
             powerUpChance("red");
-            dropOcurred = true;
         }
 
         if (dropOcurred === false) {
             powerUpChance("gravity");
-            dropOcurred = true;
         }
 
         // Slightly boost the player stats and score per star to compensate for increased difficulty
@@ -285,6 +282,7 @@ function powerUpChance(powerUp)
             purplePowerUp.setCollideWorldBounds(true);
             purplePowerUp.setVelocity(Phaser.Math.Between(-20, 20), 15);      
             purplePowerUpUsed = true;
+            dropOcurred = true;
         }
     }
     else if (powerUp === "red")
@@ -297,6 +295,7 @@ function powerUpChance(powerUp)
             redPowerUp.setCollideWorldBounds(true);
             redPowerUp.setVelocity(Phaser.Math.Between(-20, 20), 15);      
             redPowerUpUsed = true;
+            dropOcurred = true;
         }
     }
     else if (powerUp === "gravity")
@@ -317,6 +316,8 @@ function powerUpChance(powerUp)
                 anvil.setCollideWorldBounds(true);
                 anvil.setVelocity(Phaser.Math.Between(-20, 20), 30);
             }
+
+            dropOcurred = true;
         }
     }
 }
