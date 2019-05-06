@@ -57,6 +57,65 @@
         </table>
 
         <p>
+            You'll see the following characters appear in this game:
+            <table>
+                <tr>
+                    <td class="actor-table"><img src="img/dude.png"></td>
+                    <td class="actor-table"><img src="img/star.png"></td>
+                    <td class="actor-table"><img src="img/bomb.png"></td>
+                    <td class="actor-table"><img src="img/PowerUp1.png"></td>
+                    <td class="actor-table"><img src="img/PowerUp2.png"></td>
+                    <td class="actor-table"><img src="img/feather.png"></td>
+                    <td class="actor-table"><img src="img/anvil.png"></td>
+                </tr>
+                <tr>
+                    <td class="actor-table">
+                        <b>Player</b>
+                        <p class="actor-explain">
+                            The player character that you can control and try to keep alive.
+                        </p>
+                    </td>
+                    <td class="actor-table">
+                        <b>Stars</b>
+                        <p class="actor-explain">
+                            
+                        </p>
+                    </td>
+                    <td class="actor-table">
+                        <b>Bombs</b>
+                        <p class="actor-explain">
+
+                        </p>
+                    </td>
+                    <td class="actor-table">
+                        <b>Purple Power Up</b>
+                        <p class="actor-explain">
+
+                        </p>
+                    </td>
+                    <td class="actor-table">
+                        <b>Red Power Up</b>
+                        <p class="actor-explain">
+
+                        </p>
+                    </td>
+                    <td class="actor-table">
+                        <b>Feather</b>
+                        <p class="actor-explain">
+
+                        </p>
+                    </td>
+                    <td class="actor-table">
+                        <b>Anvil</b>
+                        <p class="actor-explain">
+
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </p>
+
+        <p>
             Once you're done playing the game, hit the <b>Submit</b> button below to save your score. 
             Don't forget to look and see how you compare to other players!
         </p>

@@ -1,3 +1,14 @@
+.actor-explain {
+    font-size: 0.7em;
+}
+
+.actor-table {
+    height: 5em;
+    font-size: 1.5em;
+    width: 15%;
+    border: black solid 1px;
+}
+
 article {
     margin: auto;
     text-align: center;

@@ -225,7 +225,7 @@ function collectStar(player, star)
             }
         }
 
-        // Create bombs based on what level it is. Currently adding a bomb every 4 levels through 16, plus one at level 2.
+        // Create bombs every other level as long as there aren't 5 bombs already.
        if (level % 2 == 0 && bombCount < 5) {
             var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
             var bomb = bombs.create(x, 16, 'bomb');
@@ -288,7 +288,7 @@ function powerUpChance(powerUp)
     else if (powerUp === "red")
     {
         // Handles the red powerup drop chance and distribution
-        if (Math.random(1, 10) * 10 > 6) {
+        if (Math.random(1, 10) * 10 > 8) {
             var x = Phaser.Math.Between(10, 790);
             var redPowerUp = redPowerUps.create(x, 16, 'red');
             redPowerUp.setBounce(Phaser.Math.FloatBetween(0.4, 0.8));
@@ -301,7 +301,7 @@ function powerUpChance(powerUp)
     else if (powerUp === "gravity")
     {
         // Handles the feather and anvil distribution
-        if (Math.random(1, 10) * 10 > 5) {
+        if (Math.random(1, 10) * 10 > 6) {
             var x = Phaser.Math.Between(10, 790);
             // Randomly decide between an anvil and a feather
             if (Math.random(1, 10) * 10 > 5) {
