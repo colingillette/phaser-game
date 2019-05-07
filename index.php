@@ -37,7 +37,8 @@
             The object of the game is very simple: collect the stars and avoid the bombs. Each level ends when all the
             stars are collected. A game will end if your character is hit by a bomb. As the levels progress, the gameplay 
             becomes much more difficult, adding more stars and bombs to impede your progress. Your player, having gained experience
-            from the previous level they survived, will become slightly faster after each level as well.
+            from the previous level they survived, will become slightly faster after each level as well. The score for gathering stars
+            will also go up each level.
         </p>
         <p>
             The game only requires directional arrows to play!
@@ -57,7 +58,7 @@
         </table>
 
         <p>
-            You'll see the following characters appear in this game:
+            You'll see the following objects appear in this game:
             <table>
                 <tr>
                     <td class="actor-table"><img src="img/dude.png"></td>
@@ -71,44 +72,60 @@
                 <tr>
                     <td class="actor-table">
                         <b>Player</b>
-                        <p class="actor-explain">
-                            The player character that you can control and try to keep alive.
-                        </p>
                     </td>
                     <td class="actor-table">
                         <b>Stars</b>
-                        <p class="actor-explain">
-                            
-                        </p>
                     </td>
                     <td class="actor-table">
                         <b>Bombs</b>
-                        <p class="actor-explain">
-
-                        </p>
                     </td>
                     <td class="actor-table">
                         <b>Purple Power Up</b>
-                        <p class="actor-explain">
-
-                        </p>
                     </td>
                     <td class="actor-table">
                         <b>Red Power Up</b>
-                        <p class="actor-explain">
-
-                        </p>
                     </td>
                     <td class="actor-table">
                         <b>Feather</b>
-                        <p class="actor-explain">
-
-                        </p>
                     </td>
                     <td class="actor-table">
                         <b>Anvil</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="actor-table">
                         <p class="actor-explain">
-
+                            The player character that you can control. Try to keep them alive.
+                        </p>
+                    </td>
+                    <td class="actor-table">
+                        <p class="actor-explain">
+                            Gathering all of these will advance you to the next level.
+                        </p>
+                    </td>
+                    <td class="actor-table">
+                        <p class="actor-explain">
+                            Avoid these at all costs! Hit one and you're dead! (Unless you have a Red Power Up, that is...)
+                        </p>
+                    </td>
+                    <td class="actor-table">
+                        <p class="actor-explain">
+                            These will make you permanently faster and better at jumping!
+                        </p>
+                    </td>
+                    <td class="actor-table">
+                        <p class="actor-explain">
+                            These will temporarily allow you to destroy bombs by touching them! If you're no longer blue, it has warn off!
+                        </p>
+                    </td>
+                    <td class="actor-table">
+                        <p class="actor-explain">
+                            Feathers will temporarily make you jump extremely high.
+                        </p>
+                    </td>
+                    <td class="actor-table">
+                        <p class="actor-explain">
+                            Anvils will temporarily reduce your jumping ability.
                         </p>
                     </td>
                 </tr>

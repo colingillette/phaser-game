@@ -1,5 +1,8 @@
 .actor-explain {
     font-size: 0.7em;
+    padding-left: 2px;
+    padding-right: 2px;
+    text-align: left;
 }
 
 .actor-table {
