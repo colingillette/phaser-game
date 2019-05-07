@@ -26,7 +26,7 @@
         </p>
         <p>
             The site also uses PHP and MySQL to store user scores and data that can be displayed in
-            the webpage. See the <a href="https://github.com/colingillette/phaser-game">GitHub</a> page
+            the webpage. See the <a href="https://github.com/colingillette/phaser-game">GitHub</a> repository
             for this project to check on any technical requirements or setup that may be required.
         </p>
     </article>
@@ -37,8 +37,8 @@
             The object of the game is very simple: collect the stars and avoid the bombs. Each level ends when all the
             stars are collected. A game will end if your character is hit by a bomb. As the levels progress, the gameplay 
             becomes much more difficult, adding more stars and bombs to impede your progress. Your player, having gained experience
-            from the previous level they survived, will become slightly faster after each level as well. The score for gathering stars
-            will also go up each level.
+            from the previous levels they survived, will become slightly faster after each level as well. The score received for 
+            gathering each star will also go up every level.
         </p>
         <p>
             The game only requires directional arrows to play!
@@ -115,12 +115,12 @@
                     </td>
                     <td class="actor-table">
                         <p class="actor-explain">
-                            These will temporarily allow you to destroy bombs by touching them! If you're no longer blue, it has warn off!
+                            These will temporarily allow you to destroy bombs by touching them! Be careful, if you're no longer blue, it has warn off!
                         </p>
                     </td>
                     <td class="actor-table">
                         <p class="actor-explain">
-                            Feathers will temporarily make you jump extremely high.
+                            Feathers will temporarily make you jump much higher.
                         </p>
                     </td>
                     <td class="actor-table">
@@ -134,7 +134,8 @@
 
         <p>
             Once you're done playing the game, hit the <b>Submit</b> button below to save your score. 
-            Don't forget to look and see how you compare to other players!
+            Don't forget to look and see how you compare to other players! A leaderboard of the top 
+            10 players can be found below the submission fields.
         </p>
     </article>
 
