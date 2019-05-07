@@ -133,6 +133,16 @@
         </p>
 
         <p>
+            Now would be a good time to give credit to the fantastic artists behind this game, as well as the inspiration behind the 
+            mechanics. This game is a heavily overhauled and advanced version of a tutorial supplied by Phaser.js. You can find the 
+            original tutorial <a href="http://phaser.io">on Phaser's main site</a>.
+        </p>
+        <p> 
+            The player, bombs, stars, and background are all assets from the original tutorial. Everything else was created by me to
+            create more complexity within the game.
+        </p>
+
+        <p>
             Once you're done playing the game, hit the <b>Submit</b> button below to save your score. 
             Don't forget to look and see how you compare to other players! A leaderboard of the top 
             10 players can be found below the submission fields.
